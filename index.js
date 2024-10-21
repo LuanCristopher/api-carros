@@ -17,3 +17,15 @@ app.get('/api/produtos', (req, res) => {
 app.listen(port, () => {
   console.log(`API rodando em http://localhost:${port}/api/produtos`);
 });
+
+app.use(express.json());  
+
+// Rota POST 
+app.post('/api/produtos', (req, res) => {
+  const novoProduto = {
+    id: produtos.length + 1,
+    nome: req.body.nome
+  };
+  produtos.push(novoProduto);
+  res.status(201).json(novoProduto);
+});
